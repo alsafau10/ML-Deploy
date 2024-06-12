@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+        integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="{{ url_for('static', filename='Web/style.css') }}">
+    <title>Document</title>
+</head>
+
+<body>
+    <header>
+        <div class="logo">
+            <a href="{{url_for('main')}}">
+                <h1>Mold <span>Detection</span></h1>
+            </a>
+        </div>
+        <nav class="nav-bar">
+            <ul>
+                <li><a href="">tes</a></li>
+                <li><a href="">tes</a></li>
+                <li><a href="">tes</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="Home" class="Home">
+        <form action="{{ url_for('predict') }}" method="post" enctype="multipart/form-data">
+            <div class="content img-container">
+                <div class="drag-area">
+                    <div class="icon">
+                        <i class="fas fa-images"></i>
+                    </div>
+                    <span class="header"><span class="button">browse</span></span>
+                    <input type="file" name="file" id="file" hidden />
+                    <span class="support">Supports: JPEG, JPG, PNG</span>
+                </div>
+                <div>
+                    <button type="submit" class="submit">Submit</button>
+                </div>
+            </div>
+        </form>
+        <div class="content img-result">
+
+            <div class="result-img">
+
+                {% if img_path %}
+                <img src="static\image\result\predict\{{img_path}}" alt="gambar_img">
+                {% else %}
+                <div class="icon">
+                    <i class="fa-solid fa-arrow-up-from-bracket"></i>
+                </div>
+                <span class="result">Hasilnya akan muncul di sini</span>
+                {% endif %}
+            </div>
+        </div>
+        <div class="content metadata">
+            <div class="metadata-container">
+                <h3 class="header">Informasi data</h3>
+                {% if results %}
+                <div class="info-container">
+                    <textarea name="" id="myArea">{{results}}</textarea>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </section>
+
+
+    <script src="{{ url_for('static', filename='Web/index.js') }}"></script>
+</body>
+
+</html>
