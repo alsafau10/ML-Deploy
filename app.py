@@ -56,7 +56,7 @@ def predict():
 
     save_dir = 'static/image/result'
     os.makedirs(save_dir, exist_ok=True)
-    results = model.predict(img,save=True, imgsz=704,conf=0.5,project =save_dir ,exist_ok=True)
+    results = model.predict(img,save=True, imgsz=736,project =save_dir ,exist_ok=True)
     metadata_img= results[0].tojson()
     return render_template('index.html',img_path = timeName, results= metadata_img)
 
